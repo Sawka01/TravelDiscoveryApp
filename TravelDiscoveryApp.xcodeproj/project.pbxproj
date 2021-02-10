@@ -19,6 +19,7 @@
 		FAC05DDF25D3C7E100FEE8DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DDE25D3C7E100FEE8DF /* User.swift */; };
 		FAC05DE225D3C7E900FEE8DF /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DE125D3C7E900FEE8DF /* Category.swift */; };
 		FAC05DE625D3C80400FEE8DF /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DE525D3C80400FEE8DF /* Restaurant.swift */; };
+		FAC05DEB25D3CE3A00FEE8DF /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DEA25D3CE3A00FEE8DF /* TileModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FAC05DDE25D3C7E100FEE8DF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAC05DE125D3C7E900FEE8DF /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FAC05DE525D3C80400FEE8DF /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		FAC05DEA25D3CE3A00FEE8DF /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		FAC05DB625D37A6000FEE8DF /* TravelDiscoveryApp */ = {
 			isa = PBXGroup;
 			children = (
+				FAC05DE925D3CE2100FEE8DF /* Utils */,
 				FAC05DD625D3C78700FEE8DF /* Models */,
 				FAC05DC725D3C27600FEE8DF /* Discover */,
 				FAC05DB725D37A6000FEE8DF /* TravelDiscoveryAppApp.swift */,
@@ -107,6 +110,14 @@
 				FAC05DE125D3C7E900FEE8DF /* Category.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FAC05DE925D3CE2100FEE8DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FAC05DEA25D3CE3A00FEE8DF /* TileModifier.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC05DE625D3C80400FEE8DF /* Restaurant.swift in Sources */,
+				FAC05DEB25D3CE3A00FEE8DF /* TileModifier.swift in Sources */,
 				FAC05DE225D3C7E900FEE8DF /* Category.swift in Sources */,
 				FAC05DD125D3C6EC00FEE8DF /* DiscoverCategoriesView.swift in Sources */,
 				FAC05DCB25D3C47E00FEE8DF /* PopularDestinationsView.swift in Sources */,
