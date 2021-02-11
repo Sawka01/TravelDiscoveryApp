@@ -16,19 +16,25 @@ class CategoryDetailsViewModel: ObservableObject {
 
     @Published var errorMessage = ""
 
-    init() {
-        // network code will happen here
+    init(name: String) {
 
-        // real network code
+        let urlString = "https://travel.letsbuildthatapp.com/travel_discovery/category?name=\(name.lowercased())"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
-        guard let url = URL(string: "https://travel.letsbuildthatapp.com/travel_discovery/category?name=art") else { return }
+        guard let url = URL(string: urlString) else {
+            self.isLoading = false
+            return
+        }
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
 
-            // you want to check response statusCode and error
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 400 {
+                self.isLoading = false
+                self.errorMessage = "Bad status: \(statusCode)"
+                return
+            }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 guard let data = data else { return }
 
                 do {
@@ -40,13 +46,23 @@ class CategoryDetailsViewModel: ObservableObject {
 
                 self.isLoading = false
             }
-        }.resume() // make sure to have resume
+        }.resume()
     }
 }
 
 struct CategoryDetailsView: View {
 
-    @ObservedObject var vm = CategoryDetailsViewModel()
+    private let name: String
+    @ObservedObject private var vm: CategoryDetailsViewModel
+
+    init(name: String) {
+        print("Loaded CatrgoryDetails View and making a network request for \(name)")
+        self.name = name
+        self.vm = .init(name: name)
+    }
+
+//    let name: String
+//    @ObservedObject var vm = CategoryDetailsViewModel()
 
     var body: some View {
         ZStack {
@@ -63,7 +79,17 @@ struct CategoryDetailsView: View {
 
             } else {
                 ZStack {
-                    Text(vm.errorMessage)
+
+                    if !vm.errorMessage.isEmpty {
+                        VStack(spacing: 12) {
+                            Image(systemName: "xmark.octagon.fill")
+                                .font(.system(size: 64, weight: .semibold))
+                                .foregroundColor(.red)
+                            Text(vm.errorMessage)
+                                .font(.system(size: 20, weight: .semibold))
+                        }
+                    }
+
                     ScrollView {
                         ForEach(vm.places, id: \.self) { place in
                             VStack(alignment: .leading, spacing: 0) {
@@ -83,14 +109,14 @@ struct CategoryDetailsView: View {
                 }
             }
         }
-        .navigationBarTitle("Category", displayMode: .inline)
+        .navigationBarTitle(name, displayMode: .inline)
     }
 }
 
 struct CategoryDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CategoryDetailsView()
+            CategoryDetailsView(name: "Food")
         }
     }
 }
