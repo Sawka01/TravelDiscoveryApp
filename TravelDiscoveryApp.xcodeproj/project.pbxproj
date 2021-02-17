@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAABAA8725DCE81E00C5A19D /* DestinationHeaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAABAA8625DCE81E00C5A19D /* DestinationHeaderContainer.swift */; };
 		FAC05DB825D37A6000FEE8DF /* TravelDiscoveryAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DB725D37A6000FEE8DF /* TravelDiscoveryAppApp.swift */; };
 		FAC05DBA25D37A6000FEE8DF /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC05DB925D37A6000FEE8DF /* DiscoverView.swift */; };
 		FAC05DBC25D37A6300FEE8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC05DBB25D37A6300FEE8DF /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAABAA8625DCE81E00C5A19D /* DestinationHeaderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationHeaderContainer.swift; sourceTree = "<group>"; };
 		FAC05DB425D37A6000FEE8DF /* TravelDiscoveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelDiscoveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC05DB725D37A6000FEE8DF /* TravelDiscoveryAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDiscoveryAppApp.swift; sourceTree = "<group>"; };
 		FAC05DB925D37A6000FEE8DF /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FAABAA8525DCE80900C5A19D /* DestinationGroup */ = {
+			isa = PBXGroup;
+			children = (
+				FAABAA8625DCE81E00C5A19D /* DestinationHeaderContainer.swift */,
+			);
+			path = DestinationGroup;
+			sourceTree = "<group>";
+		};
 		FAC05DAB25D37A6000FEE8DF = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 		FAC05DC725D3C27600FEE8DF /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				FAABAA8525DCE80900C5A19D /* DestinationGroup */,
 				FAC05DF725D4A45900FEE8DF /* Category */,
 				FAC05DB925D37A6000FEE8DF /* DiscoverView.swift */,
 				FAC05DD325D3C72F00FEE8DF /* TrendingCreatorsView.swift */,
@@ -223,6 +234,7 @@
 				FAC05DE225D3C7E900FEE8DF /* Category.swift in Sources */,
 				FAC05DD125D3C6EC00FEE8DF /* DiscoverCategoriesView.swift in Sources */,
 				FAC05DCB25D3C47E00FEE8DF /* PopularDestinationsView.swift in Sources */,
+				FAABAA8725DCE81E00C5A19D /* DestinationHeaderContainer.swift in Sources */,
 				FAC05E0025D4A4FF00FEE8DF /* Place.swift in Sources */,
 				FAC05DD425D3C72F00FEE8DF /* TrendingCreatorsView.swift in Sources */,
 				FAC05DCE25D3C65A00FEE8DF /* PopularRestaurantsView.swift in Sources */,
