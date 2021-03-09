@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct DestinationHeaderContainer: UIViewControllerRepresentable {
+
+    let imageNames: [String]
+
     func makeUIViewController(context: Context) -> UIViewController {
-        let pvc = CustomPageViewController()
+        let pvc = CustomPageViewController(imageNames: imageNames)
         return pvc
     }
 
@@ -44,16 +47,9 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
         return allControllers[index + 1]
     }
 
+    var allControllers: [UIViewController] = []
 
-    let firstVC = UIHostingController(rootView: Text("First View Controller"))
-    let secondVC = UIHostingController(rootView: Text("Second"))
-    let thirdVC = UIHostingController(rootView: Text("Third"))
-
-    lazy var allControllers: [UIViewController] = [
-        firstVC, secondVC, thirdVC
-    ]
-
-    init() {
+    init(imageNames: [String]) {
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = .red
 
@@ -61,7 +57,17 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
                    navigationOrientation: .horizontal,
                    options: nil)
 
-        setViewControllers([firstVC],
+        allControllers = imageNames.map({ imageName in
+            let hostingController =
+                UIHostingController(rootView:
+                                        Image(imageName)
+                                        .resizable()
+                                        .scaledToFill())
+            hostingController.view.clipsToBounds = true
+            return hostingController
+        })
+
+        setViewControllers([allControllers.first!],
                            direction: .forward,
                            animated: true,
                            completion: nil)
@@ -77,7 +83,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
 
 struct DestinationHeaderContainer_Previews: PreviewProvider {
     static var previews: some View {
-        DestinationHeaderContainer()
+        DestinationHeaderContainer(imageNames: ["new_york", "japan", "eiffel_tower"])
         NavigationView {
             PopularDestinationDetailsView(destination: .init(name: "Paris", country: "France", imageName: "eiffel_tower", latitude: 48.859565, longitude: 2.353235))
         }
