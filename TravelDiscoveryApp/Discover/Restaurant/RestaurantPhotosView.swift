@@ -31,6 +31,7 @@ struct RestaurantPhotosView: View {
     ]
 
     @State var mode = "grid"
+    @State var shouldShowFullScreenModal = false
 
     init() {
         UISegmentedControl.appearance().backgroundColor = .black
@@ -50,6 +51,24 @@ struct RestaurantPhotosView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 .padding()
 
+                Spacer()
+                    .fullScreenCover(isPresented: $shouldShowFullScreenModal, content: {
+                        ZStack(alignment: .topLeading) {
+                            Color.black.ignoresSafeArea()
+
+                            RestaurantCarouselContainer(imageUrlStrings: photoUrlStrings)
+
+                            Button(action: {
+                                shouldShowFullScreenModal.toggle()
+                            }, label: {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 32, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .padding()
+                            })
+                        }
+                    })
+
                 if mode == "grid" {
                     LazyVGrid(columns: [
                         GridItem(.adaptive(minimum: proxy.size.width / 3 - 4, maximum: 600), spacing: 2)
@@ -57,11 +76,16 @@ struct RestaurantPhotosView: View {
                     ], spacing: 4, content: {
 
                         ForEach(photoUrlStrings, id: \.self) { urlString in
-                            KFImage(URL(string: urlString))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
-                                .clipped()
+
+                            Button(action: {
+                                shouldShowFullScreenModal.toggle()
+                            }, label: {
+                                KFImage(URL(string: urlString))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
+                                    .clipped()
+                            })
                         }
 
                     }).padding(.horizontal, 2)
