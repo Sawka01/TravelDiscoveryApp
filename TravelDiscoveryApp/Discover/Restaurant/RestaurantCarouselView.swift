@@ -11,9 +11,10 @@ import Kingfisher
 struct RestaurantCarouselContainer: UIViewControllerRepresentable {
 
     let imageUrlStrings: [String]
+    let selectedIndex: Int
 
     func makeUIViewController(context: Context) -> UIViewController {
-        let pvc = CarouselPageViewController(imageUrlStrings: imageUrlStrings)
+        let pvc = CarouselPageViewController(imageUrlStrings: imageUrlStrings, selectedIndex: selectedIndex)
         return pvc
     }
 
@@ -31,7 +32,7 @@ class CarouselPageViewController: UIPageViewController, UIPageViewControllerData
     }
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        return self.selectedIndex
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -49,8 +50,10 @@ class CarouselPageViewController: UIPageViewController, UIPageViewControllerData
     }
 
     var allControllers: [UIViewController] = []
+    var selectedIndex: Int
 
-    init(imageUrlStrings: [String]) {
+    init(imageUrlStrings: [String], selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = .red
 
@@ -72,8 +75,8 @@ class CarouselPageViewController: UIPageViewController, UIPageViewControllerData
             return hostingController
         })
 
-        if let first = allControllers.first {
-            setViewControllers([first],
+        if selectedIndex < allControllers.count {
+            setViewControllers([allControllers[selectedIndex]],
                                direction: .forward,
                                animated: true,
                                completion: nil)
