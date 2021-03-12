@@ -83,11 +83,16 @@ struct RestaurantDetailsView: View {
 
                     Spacer()
 
-                    Text("See more photos")
-                        .foregroundColor(.white)
-                        .font(.system(size: 14, weight: .regular))
-                        .frame(width: 80)
-                        .multilineTextAlignment(.trailing)
+                    NavigationLink(
+                        destination: RestaurantPhotosView(),
+                        label: {
+                            Text("See more photos")
+                                .foregroundColor(.white)
+                                .font(.system(size: 14, weight: .regular))
+                                .frame(width: 80)
+                                .multilineTextAlignment(.trailing)
+                    })
+
                 }.padding()
             }
 
@@ -146,6 +151,7 @@ struct ReviewList: View {
                 .font(.system(size: 16, weight: .bold))
             Spacer()
         }.padding(.horizontal)
+        .padding(.top)
 
         ForEach(reviews, id: \.self) { review in
             VStack(alignment: .leading) {
@@ -181,7 +187,7 @@ struct ReviewList: View {
                 Text(review.text)
                     .font(.system(size: 14, weight: .regular))
 
-            }.padding(.top)
+            }
             .padding(.horizontal)
         }
     }
