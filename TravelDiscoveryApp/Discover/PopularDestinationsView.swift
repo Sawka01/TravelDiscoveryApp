@@ -28,7 +28,7 @@ struct PopularDestinationsView: View {
             }.padding(.horizontal)
             .padding(.top)
 
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8.0) {
                     ForEach(destinations, id: \.self) { destination in
                         NavigationLink(
